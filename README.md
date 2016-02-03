@@ -8,6 +8,5 @@ Program functionality:
   - send Magic Packet over the internet
   - store a list of needed data
   - backup the list
-  - 
 
 Self link: https://github.com/Obelixx/AAWoL/blob/master/README.md
