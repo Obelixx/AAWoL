@@ -4,6 +4,6 @@
 # use_frameworks!
 
 target 'AAWoL' do
-
+pod 'FMDB'
 end
 
