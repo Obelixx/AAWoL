@@ -7,6 +7,7 @@
 //
 
 #import "DBHelper.h"
+#import "FMDB.h"
 
 @implementation DBHelper
 
