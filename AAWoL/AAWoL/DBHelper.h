@@ -11,6 +11,5 @@
 
 @interface DBHelper : NSObject
 
--(FMDatabase *) dbInit;
 
 @end

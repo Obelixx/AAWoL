@@ -14,6 +14,7 @@
 		857A37FF1C623D51002B1EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857A37FE1C623D51002B1EBB /* Assets.xcassets */; };
 		857A38021C623D52002B1EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857A38001C623D52002B1EBB /* LaunchScreen.storyboard */; };
 		857A385C1C641482002B1EBB /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A385B1C641482002B1EBB /* DBHelper.m */; };
+		85891BC61C6665820085322C /* WoLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85891BC51C6665820085322C /* WoLItem.swift */; };
 		F7A4F594FCB3CCE8196E32E5 /* libPods-AAWoL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75272F8D506A0EE820D3AAC /* libPods-AAWoL.a */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,8 @@
 		857A38031C623D52002B1EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		857A385A1C641482002B1EBB /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		857A385B1C641482002B1EBB /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		85891BC41C6665810085322C /* AAWoL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAWoL-Bridging-Header.h"; sourceTree = "<group>"; };
+		85891BC51C6665820085322C /* WoLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoLItem.swift; sourceTree = "<group>"; };
 		E75272F8D506A0EE820D3AAC /* libPods-AAWoL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AAWoL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF1CFDC2D5C94E636C2BF44 /* Pods-AAWoL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAWoL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AAWoL/Pods-AAWoL.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +71,7 @@
 		857A37F11C623D51002B1EBB /* AAWoL */ = {
 			isa = PBXGroup;
 			children = (
+				85891BC31C6664F00085322C /* Models */,
 				857A38591C641435002B1EBB /* Helpers */,
 				857A38581C63E877002B1EBB /* ViewControllers */,
 				857A37F51C623D51002B1EBB /* AppDelegate.h */,
@@ -105,6 +109,15 @@
 				857A385B1C641482002B1EBB /* DBHelper.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		85891BC31C6664F00085322C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				85891BC51C6665820085322C /* WoLItem.swift */,
+				85891BC41C6665810085322C /* AAWoL-Bridging-Header.h */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		AC8F8BF102E4198F788F57C4 /* Pods */ = {
@@ -247,6 +260,7 @@
 			files = (
 				857A37FA1C623D51002B1EBB /* MainViewController.m in Sources */,
 				857A37F71C623D51002B1EBB /* AppDelegate.m in Sources */,
+				85891BC61C6665820085322C /* WoLItem.swift in Sources */,
 				857A37F41C623D51002B1EBB /* main.m in Sources */,
 				857A385C1C641482002B1EBB /* DBHelper.m in Sources */,
 			);
@@ -361,10 +375,15 @@
 			baseConfigurationReference = EEF1CFDC2D5C94E636C2BF44 /* Pods-AAWoL.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = AAWoL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AA.AAWoL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AAWoL/AAWoL-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -373,10 +392,14 @@
 			baseConfigurationReference = 7E61937F55BAE757F8BA972E /* Pods-AAWoL.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = AAWoL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AA.AAWoL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AAWoL/AAWoL-Bridging-Header.h";
 			};
 			name = Release;
 		};
