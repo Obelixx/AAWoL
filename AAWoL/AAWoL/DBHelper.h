@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
+#import "AAWoL-Swift.h"
 
 @interface DBHelper : NSObject
 
+-(instancetype) init;
+
+-(NSMutableArray *) getAll;
+-(void) add: (WoLItem *) wolItem;
 
 @end

@@ -15,6 +15,7 @@
 		857A38021C623D52002B1EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857A38001C623D52002B1EBB /* LaunchScreen.storyboard */; };
 		857A385C1C641482002B1EBB /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A385B1C641482002B1EBB /* DBHelper.m */; };
 		85891BC61C6665820085322C /* WoLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85891BC51C6665820085322C /* WoLItem.swift */; };
+		85891BCF1C66C7E30085322C /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85891BCE1C66C7E30085322C /* AddViewController.m */; };
 		F7A4F594FCB3CCE8196E32E5 /* libPods-AAWoL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75272F8D506A0EE820D3AAC /* libPods-AAWoL.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		857A385B1C641482002B1EBB /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		85891BC41C6665810085322C /* AAWoL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAWoL-Bridging-Header.h"; sourceTree = "<group>"; };
 		85891BC51C6665820085322C /* WoLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoLItem.swift; sourceTree = "<group>"; };
+		85891BCD1C66C7E30085322C /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		85891BCE1C66C7E30085322C /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		E75272F8D506A0EE820D3AAC /* libPods-AAWoL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AAWoL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF1CFDC2D5C94E636C2BF44 /* Pods-AAWoL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAWoL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AAWoL/Pods-AAWoL.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,8 +99,10 @@
 		857A38581C63E877002B1EBB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				857A37F91C623D51002B1EBB /* MainViewController.m */,
 				857A37F81C623D51002B1EBB /* MainViewController.h */,
+				857A37F91C623D51002B1EBB /* MainViewController.m */,
+				85891BCD1C66C7E30085322C /* AddViewController.h */,
+				85891BCE1C66C7E30085322C /* AddViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -114,8 +119,8 @@
 		85891BC31C6664F00085322C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				85891BC51C6665820085322C /* WoLItem.swift */,
 				85891BC41C6665810085322C /* AAWoL-Bridging-Header.h */,
+				85891BC51C6665820085322C /* WoLItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			files = (
 				857A37FA1C623D51002B1EBB /* MainViewController.m in Sources */,
 				857A37F71C623D51002B1EBB /* AppDelegate.m in Sources */,
+				85891BCF1C66C7E30085322C /* AddViewController.m in Sources */,
 				85891BC61C6665820085322C /* WoLItem.swift in Sources */,
 				857A37F41C623D51002B1EBB /* main.m in Sources */,
 				857A385C1C641482002B1EBB /* DBHelper.m in Sources */,

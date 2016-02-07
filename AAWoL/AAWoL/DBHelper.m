@@ -27,78 +27,101 @@
     if (self) {
         self.sqliteFilePath = [NSString stringWithFormat:@"%@%@%@", NSHomeDirectory(), @"/AAWoL", @".sqlite"];
     }
-    return self;
-}
-
-- (instancetype) init: (NSString *)withSqliteFilePath{
-    self = [super init];
-    if (self) {
-        self.sqliteFilePath = [NSString stringWithFormat:@"%@", withSqliteFilePath];
+    @try{
+        [self createTabelIfNotExist];
+    }
+    @catch(NSException *exception){
+        NSLog(@"Error Creating Table!");
+        NSLog(@"%@", exception.reason);
     }
     return self;
 }
 
 -(BOOL) openDB{
+    NSLog(@"openDB CALLED!");
     self.db = [DBHelper dbInit:self.sqliteFilePath];
     if (![self.db open]) {
         return NO;
     }
-    return true;
+    return YES;
 }
 
 -(void) closeDB{
+    NSLog(@"closeDB CALLED!");
     [self.db close];
 }
 
 -(void) createTabelIfNotExist{
-    [self execute:@"CREATE TABLE IF NOT EXIST WoLItems (macAddress TEXT, ipAdress TEXT, mask TEXT, port NUMBER)"];
-}
-
--(FMResultSet *) execute: (NSString *)query{
-    FMResultSet *resultSet;
-    if([self openDB]){
-        if ([query containsString:@"SELECT"] || [query containsString:@"select"]) {
-            resultSet = [self.db executeQuery: query];
-        } else {
-            [self.db executeUpdate:query];
+    FMResultSet *result = [self execute: @"SELECT count(*) FROM sqlite_master WHERE type='table' AND name='WoLItems';": nil: NO];
+    if ([result next]) {
+        if([[result stringForColumnIndex: 0] isEqualToString: @"0"]){
+            [self execute: @"CREATE TABLE IF NOT EXISTS WoLItems (macAddress TEXT, ipAddress TEXT, mask TEXT, port NUMBER)": nil: NO];
+            
+            WoLItem *exampleItem = [[WoLItem alloc] initWithMacAddress:@"9c:d6:43:90:fa:7d"
+                                                         andIpAddress:@"78.90.30.20"
+                                                              andMask:@"255.255.255.255"
+                                                              andPort:8];
+            [self add:exampleItem];
         }
     }
-    [self closeDB];
+}
+
+-(FMResultSet *) execute: (NSString *)query :(NSArray *)values :(BOOL)closeDB{
+    FMResultSet *resultSet;
+    if([self openDB]){
+        if ([query containsString: @"SELECT"] || [query containsString: @"select"]) {
+            resultSet = [self.db executeQuery: query];
+        } else {
+            [self.db executeUpdate: query
+                            values: values
+                             error: nil];
+        }
+    }
+    if(closeDB){
+        [self closeDB];
+    }
     return resultSet;
 }
 
+
 -(NSMutableArray *) getAll{
+    
+    
     NSMutableArray *WoLItems = [[NSMutableArray alloc] init];
-    NSString *query = @"SELECT macAdress, ipAdress, mask, port FROM WoLItems";
-    FMResultSet *result = [self execute:query];
+    NSString *query = @"SELECT macAddress, ipAddress, mask, port FROM WoLItems";
+    FMResultSet *result = [self execute: query: nil: NO];
     
     while ([result next]) {
-        WoLItem *item = [[WoLItem alloc] initWithMacAddress: [result stringForColumn:@"macAdress"]
-                                              withIpAddress: [result stringForColumn:@"ipAdress"]
-                                                   withMask: [result stringForColumn:@"mask"]
-                                                   withPort: [result intForColumn:@"port"]];
+        WoLItem *item = [[WoLItem alloc] initWithMacAddress: [result stringForColumn: @"macAddress"]
+                                              andIpAddress: [result stringForColumn: @"ipAddress"]
+                                                   andMask: [result stringForColumn: @"mask"]
+                                                   andPort: [result intForColumn: @"port"]];
         [WoLItems addObject:item];
     }
+    [self closeDB];
     return WoLItems;
 }
 
 -(void) add: (WoLItem *) wolItem{
-    NSString *mac = wolItem.macAdress;
-    NSString *ip = wolItem.ipAdress;
+    NSString *mac = wolItem.macAddress;
+    NSString *ip = wolItem.ipAddress;
     NSString *mask = wolItem.mask;
     NSString *port = [[[NSNumber alloc] initWithInteger: wolItem.port] stringValue];
     
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO WoLItems (%@,%@,%@,%@)",mac,ip,mask,port];
-    [self execute:query];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO WoLItems VALUES (?,?,?,?)"];
+    NSArray *values = [NSArray arrayWithObjects:mac,ip,mask,port, nil];
+    [self execute: query: values: YES];
 }
 
 +(FMDatabase *)dbInit: (NSString *)withSqliteFilePath{
+    
     static FMDatabase *db;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         db  = [FMDatabase databaseWithPath: withSqliteFilePath];
     });
     
+    NSLog(@"INIT CALLED! Returned: %@",db);
     return db;
 }
 
