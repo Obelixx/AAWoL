@@ -25,8 +25,6 @@
 
 
 - (IBAction)WakeClicked:(id)sender {
-    NSLog(@"WakeClicked");
-    
     unsigned char *ip = (unsigned char *) [self.TLIp.text cStringUsingEncoding:NSASCIIStringEncoding];
     unsigned char *mac = (unsigned char *) [self.TLMac.text cStringUsingEncoding:NSASCIIStringEncoding];
     
@@ -36,8 +34,8 @@
 }
 
 - (IBAction)EditClicked:(id)sender {
-    NSString *segueString = [NSString stringWithFormat:@"EditButton"];
-    [self.MainView performSegueWithIdentifier:segueString sender:self];
+    WoLItem *item = [[WoLItem alloc] initWithMacAddress:self.TLMac.text andIpAddress:self.TLIp.text andPort: [self.TLPort.text intValue]];
+    [self.MainView EditClicked:item];
 }
 
 @end

@@ -40,6 +40,15 @@
                                                  name:UITextFieldTextDidChangeNotification
                                                object:self.TFPort];
     
+    if (self.ItemData != nil) {
+        self.TFIpAddress.text = self.ItemData.ipAddress;
+        self.TFMacAddress.text = self.ItemData.macAddress;
+        self.TFPort.text = [[NSNumber alloc] initWithInteger: self.ItemData.port].stringValue;
+        
+        
+        [self textFieldChanged:(NSNotification *)self];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,24 +76,23 @@
     NSPredicate *macTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", macRegexp];
     NSPredicate *ipTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", ipRegexp];
     
-    if ([notification object] == self.TFMacAddress) {
-        if ([macTest evaluateWithObject: self.TFMacAddress.text]){
-            self.TFMacAddress.textColor = [UIColor greenColor];
-        }else{
-            self.TFMacAddress.textColor = [UIColor redColor];
-        }
-    } else if ([notification object] == self.TFIpAddress) {
-        if ([ipTest evaluateWithObject: self.TFIpAddress.text]){
-            self.TFIpAddress.textColor = [UIColor greenColor];
-        }else{
-            self.TFIpAddress.textColor = [UIColor redColor];
-        }
-    } else if ([notification object] == self.TFPort) {
-        if (self.TFPort.text.intValue >=0 && self.TFPort.text.intValue <= 65535){
-            self.TFPort.textColor = [UIColor greenColor];
-        }else{
-            self.TFPort.textColor = [UIColor redColor];
-        }
+    
+    if ([macTest evaluateWithObject: self.TFMacAddress.text]){
+        self.TFMacAddress.textColor = [UIColor greenColor];
+    }else{
+        self.TFMacAddress.textColor = [UIColor redColor];
+    }
+    
+    if ([ipTest evaluateWithObject: self.TFIpAddress.text]){
+        self.TFIpAddress.textColor = [UIColor greenColor];
+    }else{
+        self.TFIpAddress.textColor = [UIColor redColor];
+    }
+    
+    if (self.TFPort.text.intValue >=0 && self.TFPort.text.intValue <= 65535){
+        self.TFPort.textColor = [UIColor greenColor];
+    }else{
+        self.TFPort.textColor = [UIColor redColor];
     }
 }
 
@@ -100,6 +108,10 @@
                                                    andIpAddress:self.TFIpAddress.text
                                                         andPort:self.TFPort.text.intValue];
         [db add:item];
+    }
+    
+    if(self.ItemData != nil){
+        [db remove:self.ItemData];
     }
     [self performSegueWithIdentifier:@"ToMain" sender:sender];
 }

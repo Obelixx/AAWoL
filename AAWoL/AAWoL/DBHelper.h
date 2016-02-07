@@ -16,5 +16,6 @@
 
 -(NSMutableArray *) getAll;
 -(void) add: (WoLItem *) wolItem;
+-(void) remove: (WoLItem *) wolItem;
 
 @end

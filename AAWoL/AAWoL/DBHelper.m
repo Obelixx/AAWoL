@@ -123,7 +123,7 @@
     NSString *ip = wolItem.ipAddress;
     NSString *port = [[[NSNumber alloc] initWithInteger: wolItem.port] stringValue];
     
-    NSString *query = [NSString stringWithFormat:@"DELETE FROM WoLItems WHERE macAddress='?' AND ipAddress='?' AND port='?'"];
+    NSString *query = [NSString stringWithFormat:@"DELETE FROM WoLItems WHERE macAddress=? AND ipAddress=? AND port=?"];
     NSArray *values = [NSArray arrayWithObjects:mac,ip,port, nil];
     [self execute: query: values: YES];
 }

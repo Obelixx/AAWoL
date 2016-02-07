@@ -11,6 +11,7 @@
 @interface MainViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (void)EditClicked:(id)sender;
 
 @end
 

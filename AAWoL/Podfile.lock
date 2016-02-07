@@ -2,11 +2,14 @@ PODS:
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
+  - Toast (3.0)
 
 DEPENDENCIES:
   - FMDB
+  - Toast (~> 3.0)
 
 SPEC CHECKSUMS:
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  Toast: 32c59229abfcf41850162b83bb9259dc84372473
 
 COCOAPODS: 0.39.0

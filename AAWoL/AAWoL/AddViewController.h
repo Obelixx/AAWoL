@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AAWoL-Swift.h"
 
 @interface AddViewController : UIViewController <UITextFieldDelegate>
 
-- (IBAction)SaveClicked:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextField *TFMacAddress;
 @property (weak, nonatomic) IBOutlet UITextField *TFIpAddress;
 @property (weak, nonatomic) IBOutlet UITextField *TFPort;
+@property WoLItem *ItemData;
+
+- (IBAction)SaveClicked:(id)sender;
 
 @end

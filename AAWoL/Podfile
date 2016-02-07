@@ -5,5 +5,6 @@
 
 target 'AAWoL' do
 pod 'FMDB'
+pod 'Toast', '~> 3.0'
 end
 

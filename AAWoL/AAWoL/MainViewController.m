@@ -48,11 +48,8 @@
     if ([segue.identifier isEqualToString:@"EditButton"]) {
         
         AddViewController *av = (AddViewController *)[segue destinationViewController];
-        WoLItemView *cellView = (WoLItemView *)sender;
         
-        av.TFIpAddress.text = cellView.TLIp.text;
-        av.TFMacAddress.text = cellView.TLMac.text;
-        av.TFPort.text = cellView.TLPort.text;
+        av.ItemData = (WoLItem *)sender;
     }
 }
 
@@ -90,4 +87,9 @@
         rowHeight = 65;
     return rowHeight;
 }
+
+- (void)EditClicked:(WoLItem*)item {
+    [self performSegueWithIdentifier:@"EditButton" sender:item];
+}
+
 @end
