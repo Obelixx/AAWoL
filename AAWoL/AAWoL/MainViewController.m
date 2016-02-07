@@ -9,10 +9,13 @@
 #import "MainViewController.h"
 #import "DBHelper.h"
 #import "AAWoL-Swift.h"
+#import "WoLItemView.h"
+#import "AddViewController.h"
 
 @interface MainViewController ()
 
 @property NSMutableArray *wolItems;
+@property NSNumber *currentSelection;
 
 @end
 
@@ -27,6 +30,13 @@
     
     self.tableView.dataSource = self;
     
+    self.tableView.delegate = self;
+    
+    self.currentSelection = @-1;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"WoLItemCustomView" bundle:nil] forCellReuseIdentifier:@"TabelViewCellIdentifier"];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,6 +44,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EditButton"]) {
+        
+        AddViewController *av = (AddViewController *)[segue destinationViewController];
+        WoLItemView *cellView = (WoLItemView *)sender;
+        
+        av.TFIpAddress.text = cellView.TLIp.text;
+        av.TFMacAddress.text = cellView.TLMac.text;
+        av.TFPort.text = cellView.TLPort.text;
+    }
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.wolItems.count;
@@ -41,17 +62,32 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"TabelViewCellIdentifier";
+    UITableViewCell *originalCell = [tableView dequeueReusableCellWithIdentifier:@"TabelViewCellIdentifier"];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
-                                     reuseIdentifier:cellIdentifier];
+    if(![originalCell isKindOfClass: [WoLItemView class]] || originalCell == nil) {
+        originalCell = [[[NSBundle mainBundle] loadNibNamed:@"WoLItemCustomView" owner:nil options:nil] objectAtIndex:0];
     }
     
-    WoLItem *wolItem = [self.wolItems objectAtIndex:[indexPath row]];
-    cell.textLabel.text = wolItem.ipAddress;
+    WoLItemView *cell = (WoLItemView *) originalCell;
+    
+    WoLItem *item = [self.wolItems objectAtIndex:[indexPath row]];
+    
+    cell.TLMac.text = item.macAddress;
+    cell.TLIp.text = item.ipAddress;
+    cell.TLPort.text =  [[NSNumber alloc] initWithInteger: item.port].stringValue;
+    cell.MainView = self;
     return cell;
+    
+    
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    int rowHeight;
+    if ([indexPath row] == self.currentSelection.intValue) {
+        rowHeight = 65;
+    }
+    else
+        rowHeight = 65;
+    return rowHeight;
+}
 @end

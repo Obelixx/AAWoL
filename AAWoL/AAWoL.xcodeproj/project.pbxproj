@@ -16,6 +16,9 @@
 		857A385C1C641482002B1EBB /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 857A385B1C641482002B1EBB /* DBHelper.m */; };
 		85891BC61C6665820085322C /* WoLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85891BC51C6665820085322C /* WoLItem.swift */; };
 		85891BCF1C66C7E30085322C /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85891BCE1C66C7E30085322C /* AddViewController.m */; };
+		85891BDB1C67878B0085322C /* WoLItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85891BDA1C67878B0085322C /* WoLItemView.m */; };
+		85891BDF1C67B9280085322C /* WoLItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85891BDE1C67B9280085322C /* WoLItemCustomView.xib */; };
+		85891BED1C67DD3A0085322C /* wol.c in Sources */ = {isa = PBXBuildFile; fileRef = 85891BEB1C67DD3A0085322C /* wol.c */; };
 		F7A4F594FCB3CCE8196E32E5 /* libPods-AAWoL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75272F8D506A0EE820D3AAC /* libPods-AAWoL.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,11 @@
 		85891BC51C6665820085322C /* WoLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WoLItem.swift; sourceTree = "<group>"; };
 		85891BCD1C66C7E30085322C /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		85891BCE1C66C7E30085322C /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		85891BD91C67878B0085322C /* WoLItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoLItemView.h; sourceTree = "<group>"; };
+		85891BDA1C67878B0085322C /* WoLItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WoLItemView.m; sourceTree = "<group>"; };
+		85891BDE1C67B9280085322C /* WoLItemCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WoLItemCustomView.xib; sourceTree = "<group>"; };
+		85891BEB1C67DD3A0085322C /* wol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wol.c; path = Plugins/wol.c; sourceTree = "<group>"; };
+		85891BEC1C67DD3A0085322C /* wol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wol.h; path = Plugins/wol.h; sourceTree = "<group>"; };
 		E75272F8D506A0EE820D3AAC /* libPods-AAWoL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AAWoL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF1CFDC2D5C94E636C2BF44 /* Pods-AAWoL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAWoL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AAWoL/Pods-AAWoL.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +82,7 @@
 		857A37F11C623D51002B1EBB /* AAWoL */ = {
 			isa = PBXGroup;
 			children = (
+				85891BE01C67C4190085322C /* Plugins */,
 				85891BC31C6664F00085322C /* Models */,
 				857A38591C641435002B1EBB /* Helpers */,
 				857A38581C63E877002B1EBB /* ViewControllers */,
@@ -99,6 +108,7 @@
 		857A38581C63E877002B1EBB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				85891BD81C6787600085322C /* CustomViews */,
 				857A37F81C623D51002B1EBB /* MainViewController.h */,
 				857A37F91C623D51002B1EBB /* MainViewController.m */,
 				85891BCD1C66C7E30085322C /* AddViewController.h */,
@@ -123,6 +133,25 @@
 				85891BC51C6665820085322C /* WoLItem.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		85891BD81C6787600085322C /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				85891BD91C67878B0085322C /* WoLItemView.h */,
+				85891BDA1C67878B0085322C /* WoLItemView.m */,
+				85891BDE1C67B9280085322C /* WoLItemCustomView.xib */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		85891BE01C67C4190085322C /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				85891BEB1C67DD3A0085322C /* wol.c */,
+				85891BEC1C67DD3A0085322C /* wol.h */,
+			);
+			name = Plugins;
 			sourceTree = "<group>";
 		};
 		AC8F8BF102E4198F788F57C4 /* Pods */ = {
@@ -202,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85891BDF1C67B9280085322C /* WoLItemCustomView.xib in Resources */,
 				857A38021C623D52002B1EBB /* LaunchScreen.storyboard in Resources */,
 				857A37FF1C623D51002B1EBB /* Assets.xcassets in Resources */,
 				857A37FD1C623D51002B1EBB /* Main.storyboard in Resources */,
@@ -263,8 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85891BED1C67DD3A0085322C /* wol.c in Sources */,
 				857A37FA1C623D51002B1EBB /* MainViewController.m in Sources */,
 				857A37F71C623D51002B1EBB /* AppDelegate.m in Sources */,
+				85891BDB1C67878B0085322C /* WoLItemView.m in Sources */,
 				85891BCF1C66C7E30085322C /* AddViewController.m in Sources */,
 				85891BC61C6665820085322C /* WoLItem.swift in Sources */,
 				857A37F41C623D51002B1EBB /* main.m in Sources */,

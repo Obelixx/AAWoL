@@ -13,9 +13,6 @@
 - (IBAction)SaveClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *TFMacAddress;
 @property (weak, nonatomic) IBOutlet UITextField *TFIpAddress;
-@property (weak, nonatomic) IBOutlet UITextField *TFMaskAddress;
 @property (weak, nonatomic) IBOutlet UITextField *TFPort;
-
-- (void)controlTextDidChange:(NSNotification *)notification;
 
 @end

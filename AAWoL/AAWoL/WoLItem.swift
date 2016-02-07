@@ -10,11 +10,9 @@ import Foundation
 
 @objc public class WoLItem: NSObject{
     
-    public var macAddress:String;
+    public var macAddress: String;
     
-    public var ipAddress:String;
-    
-    public var mask:String;
+    public var ipAddress: String;
     
     public var port: Int = 7{
         didSet (newPort){
@@ -26,10 +24,9 @@ import Foundation
         }
     }
     
-    init(withMacAddress: String, andIpAddress: String, andMask: String, andPort: Int) {
+    init(withMacAddress: String, andIpAddress: String, andPort: Int) {
         self.macAddress = withMacAddress;
         self.ipAddress = andIpAddress;
-        self.mask = andMask;
         self.port = andPort;
     }
     

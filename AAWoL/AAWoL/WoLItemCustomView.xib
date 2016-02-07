@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="tbL-M6-BLt" customClass="WoLItemView">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tbL-M6-BLt" id="Vds-Xu-lys">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4D-PN-oSb">
+                        <rect key="frame" x="100" y="25" width="5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IP.Add.re.ss" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foD-Gh-3wz">
+                        <rect key="frame" x="8" y="25" width="90" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1x-qp-Nz3">
+                        <rect key="frame" x="305" y="8" width="51" height="48"/>
+                        <color key="backgroundColor" red="0.56341737309999995" green="1" blue="0.82242253269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <state key="normal" title="Edit">
+                            <color key="titleColor" red="0.17217462210000001" green="0.43477746210000001" blue="0.22533910300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="EditClicked:" destination="tbL-M6-BLt" eventType="touchUpInside" id="CK9-lD-dHW"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="48" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yg-xW-o3j">
+                        <rect key="frame" x="207" y="8" width="90" height="48"/>
+                        <color key="backgroundColor" red="0.17217462210000001" green="0.43477746210000001" blue="0.22533910300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <state key="normal" title="WAKE!">
+                            <color key="titleColor" red="0.8850141211" green="0.999704072" blue="0.82178661679999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="WakeClicked:" destination="tbL-M6-BLt" eventType="touchUpInside" id="bEe-CR-7Mj"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ma:cA:dd:re:ss:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-6g-85C">
+                        <rect key="frame" x="8" y="4" width="140" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="port" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkx-XA-koN">
+                        <rect key="frame" x="106" y="25" width="32" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mbb-6g-85C" firstAttribute="top" secondItem="Vds-Xu-lys" secondAttribute="topMargin" constant="-4" id="1FH-MW-SpX"/>
+                    <constraint firstItem="foD-Gh-3wz" firstAttribute="leading" secondItem="Vds-Xu-lys" secondAttribute="leadingMargin" id="27C-LJ-Wb9"/>
+                    <constraint firstItem="A1x-qp-Nz3" firstAttribute="top" secondItem="Vds-Xu-lys" secondAttribute="topMargin" id="8yy-dJ-aXu"/>
+                    <constraint firstItem="mbb-6g-85C" firstAttribute="leading" secondItem="Vds-Xu-lys" secondAttribute="leadingMargin" id="TuL-7y-t5Y"/>
+                    <constraint firstItem="C4D-PN-oSb" firstAttribute="leading" secondItem="foD-Gh-3wz" secondAttribute="trailing" constant="2" id="ViA-EM-uT3"/>
+                    <constraint firstItem="A1x-qp-Nz3" firstAttribute="trailing" secondItem="Vds-Xu-lys" secondAttribute="trailingMargin" id="Zf1-M0-wEb"/>
+                    <constraint firstItem="gkx-XA-koN" firstAttribute="top" secondItem="mbb-6g-85C" secondAttribute="bottom" id="b7x-eq-JZi"/>
+                    <constraint firstItem="foD-Gh-3wz" firstAttribute="top" secondItem="mbb-6g-85C" secondAttribute="bottom" id="iii-jC-cde"/>
+                    <constraint firstItem="A1x-qp-Nz3" firstAttribute="leading" secondItem="1yg-xW-o3j" secondAttribute="trailing" constant="8" id="iw7-94-gxu"/>
+                    <constraint firstItem="C4D-PN-oSb" firstAttribute="top" secondItem="mbb-6g-85C" secondAttribute="bottom" id="lTR-0V-4c3"/>
+                    <constraint firstItem="gkx-XA-koN" firstAttribute="leading" secondItem="C4D-PN-oSb" secondAttribute="trailing" constant="1" id="nf2-ET-2Av"/>
+                    <constraint firstItem="1yg-xW-o3j" firstAttribute="top" secondItem="Vds-Xu-lys" secondAttribute="topMargin" id="rxp-v5-V9q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="TLIp" destination="foD-Gh-3wz" id="Ehf-ya-Hhi"/>
+                <outlet property="TLMac" destination="mbb-6g-85C" id="d1A-IW-14B"/>
+                <outlet property="TLPort" destination="gkx-XA-koN" id="Btm-ZS-PRZ"/>
+            </connections>
+            <point key="canvasLocation" x="194" y="136.5"/>
+        </tableViewCell>
+    </objects>
+</document>

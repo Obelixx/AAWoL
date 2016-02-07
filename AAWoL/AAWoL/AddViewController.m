@@ -25,7 +25,6 @@
     
     [self.TFMacAddress setDelegate: self];
     [self.TFIpAddress setDelegate: self];
-    [self.TFMaskAddress setDelegate: self];
     [self.TFPort setDelegate: self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -36,10 +35,6 @@
                                              selector:@selector(textFieldChanged:)
                                                  name:UITextFieldTextDidChangeNotification
                                                object:self.TFIpAddress];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textFieldChanged:)
-                                                 name:UITextFieldTextDidChangeNotification
-                                               object:self.TFMaskAddress];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldChanged:)
                                                  name:UITextFieldTextDidChangeNotification
@@ -63,23 +58,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-////    if ([segue.identifier isEqualToString:"ToMain"]) {
-////        MainViewController *viewController = (MainViewController *) segue.destinationViewController;
-////    }
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//}
-
-
-//-(void)textFieldDidBeginEditing:(UITextField *)textField{
-//    [self textFieldChanged:textField];
-//}
-//
-//-(void)textFieldDidEndEditing:(UITextField *)textField{
-//    [self textFieldChanged:textField];
-//}
-
 
 
 -(void)textFieldChanged:(NSNotification *)notification{
@@ -101,12 +79,6 @@
         }else{
             self.TFIpAddress.textColor = [UIColor redColor];
         }
-    } else if ([notification object] == self.TFMaskAddress) {
-        if ([ipTest evaluateWithObject: self.TFMaskAddress.text]){
-            self.TFMaskAddress.textColor = [UIColor greenColor];
-        }else{
-            self.TFMaskAddress.textColor = [UIColor redColor];
-        }
     } else if ([notification object] == self.TFPort) {
         if (self.TFPort.text.intValue >=0 && self.TFPort.text.intValue <= 65535){
             self.TFPort.textColor = [UIColor greenColor];
@@ -122,12 +94,10 @@
     
     if (self.TFMacAddress.textColor == [UIColor greenColor] &&
         self.TFIpAddress.textColor == [UIColor greenColor] &&
-        self.TFMaskAddress.textColor == [UIColor greenColor] &&
         self.TFPort.textColor == [UIColor greenColor]) {
         
             WoLItem *item = [[WoLItem alloc] initWithMacAddress:self.TFMacAddress.text
                                                    andIpAddress:self.TFIpAddress.text
-                                                        andMask:self.TFMaskAddress.text
                                                         andPort:self.TFPort.text.intValue];
         [db add:item];
     }
