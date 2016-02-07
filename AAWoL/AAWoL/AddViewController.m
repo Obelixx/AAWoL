@@ -27,6 +27,24 @@
     [self.TFIpAddress setDelegate: self];
     [self.TFMaskAddress setDelegate: self];
     [self.TFPort setDelegate: self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.TFMacAddress];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.TFIpAddress];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.TFMaskAddress];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldChanged:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.TFPort];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,41 +72,42 @@
 //}
 
 
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    [self textFieldChanged:textField];
-}
+//-(void)textFieldDidBeginEditing:(UITextField *)textField{
+//    [self textFieldChanged:textField];
+//}
+//
+//-(void)textFieldDidEndEditing:(UITextField *)textField{
+//    [self textFieldChanged:textField];
+//}
 
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    [self textFieldChanged:textField];
-}
 
 
--(void)textFieldChanged:(UITextField *)textField{
+-(void)textFieldChanged:(NSNotification *)notification{
     NSString *macRegexp = @"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$";
     NSString *ipRegexp = @"\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
     
     NSPredicate *macTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", macRegexp];
     NSPredicate *ipTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", ipRegexp];
     
-    if (textField == self.TFMacAddress) {
+    if ([notification object] == self.TFMacAddress) {
         if ([macTest evaluateWithObject: self.TFMacAddress.text]){
             self.TFMacAddress.textColor = [UIColor greenColor];
         }else{
             self.TFMacAddress.textColor = [UIColor redColor];
         }
-    } else if (textField == self.TFIpAddress) {
+    } else if ([notification object] == self.TFIpAddress) {
         if ([ipTest evaluateWithObject: self.TFIpAddress.text]){
             self.TFIpAddress.textColor = [UIColor greenColor];
         }else{
             self.TFIpAddress.textColor = [UIColor redColor];
         }
-    } else if (textField == self.TFMaskAddress) {
+    } else if ([notification object] == self.TFMaskAddress) {
         if ([ipTest evaluateWithObject: self.TFMaskAddress.text]){
             self.TFMaskAddress.textColor = [UIColor greenColor];
         }else{
             self.TFMaskAddress.textColor = [UIColor redColor];
         }
-    } else if (textField == self.TFPort) {
+    } else if ([notification object] == self.TFPort) {
         if (self.TFPort.text.intValue >=0 && self.TFPort.text.intValue <= 65535){
             self.TFPort.textColor = [UIColor greenColor];
         }else{
