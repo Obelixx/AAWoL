@@ -25,7 +25,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    self.apiUrl = @"http://localhost:9001/api/wolitems";
+    self.apiUrl = @"http://78.90.30.20:9001/api/wolitems";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.currentSelection = @-1;
