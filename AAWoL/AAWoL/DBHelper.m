@@ -108,24 +108,40 @@
     return WoLItems;
 }
 
--(void) add: (WoLItem *) wolItem{
+-(BOOL) add: (WoLItem *) wolItem{
     NSString *mac = wolItem.macAddress;
     NSString *ip = wolItem.ipAddress;
     NSString *port = [[[NSNumber alloc] initWithInteger: wolItem.port] stringValue];
     
     NSString *query = [NSString stringWithFormat:@"INSERT INTO WoLItems VALUES (?,?,?)"];
     NSArray *values = [NSArray arrayWithObjects:mac,ip,port, nil];
-    [self execute: query: values: YES];
+    @try{
+        [self execute: query: values: YES];
+    }
+    @catch(NSException *exception){
+        NSLog(@"Error on UPDATE query!");
+        NSLog(@"%@", exception.reason);
+        return NO;
+    }
+    return YES;
 }
 
--(void) remove: (WoLItem *) wolItem{
+-(BOOL) remove: (WoLItem *) wolItem{
     NSString *mac = wolItem.macAddress;
     NSString *ip = wolItem.ipAddress;
     NSString *port = [[[NSNumber alloc] initWithInteger: wolItem.port] stringValue];
     
     NSString *query = [NSString stringWithFormat:@"DELETE FROM WoLItems WHERE macAddress=? AND ipAddress=? AND port=?"];
     NSArray *values = [NSArray arrayWithObjects:mac,ip,port, nil];
-    [self execute: query: values: YES];
+    @try{
+        [self execute: query: values: YES];
+    }
+    @catch(NSException *exception){
+        NSLog(@"Error on UPDATE query!");
+        NSLog(@"%@", exception.reason);
+        return NO;
+    }
+    return YES;
 }
 
 +(FMDatabase *)dbInit: (NSString *)withSqliteFilePath{

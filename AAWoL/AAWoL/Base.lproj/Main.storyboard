@@ -121,7 +121,7 @@
                                     <navigationItem title="Add" id="Iba-H0-MAC">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p6Z-Oo-qIz">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="W4Q-3J-2DI"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="CancelButton" id="W4Q-3J-2DI"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="a3y-WQ-wc4">
@@ -134,6 +134,7 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="WkX-uf-MLg" firstAttribute="top" secondItem="Mls-55-oEc" secondAttribute="bottom" constant="20" id="29Q-l5-RIb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eCd-kn-j3C" secondAttribute="trailing" constant="-20" id="6cw-HO-xxW"/>
@@ -154,15 +155,20 @@
                             <constraint firstItem="Mls-55-oEc" firstAttribute="top" secondItem="eCd-kn-j3C" secondAttribute="bottom" constant="20" id="qHe-Q4-wSr"/>
                             <constraint firstItem="eCd-kn-j3C" firstAttribute="leading" secondItem="3d2-J6-5ma" secondAttribute="leadingMargin" constant="-20" id="xdP-rj-9g7"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="48u-nk-t7V" appends="YES" id="bXD-R0-wAQ"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="TFIpAddress" destination="Spi-A6-AnG" id="eVX-W8-Z0t"/>
                         <outlet property="TFMacAddress" destination="0EF-9V-6cX" id="eAT-MV-PHK"/>
                         <outlet property="TFPort" destination="bRn-Er-wVv" id="KUm-pR-Qxj"/>
+                        <outlet property="pinch" destination="48u-nk-t7V" id="zSr-3c-z0e"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="ToMain" id="0dk-tW-gOk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXS-dl-U3i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="48u-nk-t7V"/>
             </objects>
             <point key="canvasLocation" x="957" y="354"/>
         </scene>
@@ -184,7 +190,7 @@
                                     <navigationItem title="Title" id="aNJ-do-1qK">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ttG-eB-nJV">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="RGX-3c-1rZ"/>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="CancelButton" id="RGX-3c-1rZ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

@@ -10,13 +10,11 @@
 #import "AAWoL-Swift.h"
 #import "Plugins/wol.h"
 #import "MainViewController.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 
 @implementation WoLItemView{
     BOOL clicked;
     UIButton *button;
-    SystemSoundID PlaySoundID;
 }
 
 
@@ -54,12 +52,11 @@
     clicked = !clicked;
     
     if(clicked){
-        [self move:-movementLenth];
+        
+        [self move:movementLenth];
     }else{
         [self move:movementLenth];
     }
-    [self PlayAudio:self];
-    AudioServicesPlaySystemSound(PlaySoundID);
 }
 
 -(void)move: (int) movementLenth{
@@ -72,16 +69,7 @@
                          [button setFrame:newFrame];
                      }
                      completion:nil];
-    
 }
-
--(IBAction)PlayAudio:(id)sender{
-    NSURL *SoundURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"LightsaberTurnOn" ofType:@"wav"]];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)SoundURL, &PlaySoundID);
-    
-    
-}
-
 
 - (IBAction)EditClicked:(id)sender {
     WoLItem *item = [[WoLItem alloc] initWithMacAddress:self.TLMac.text andIpAddress:self.TLIp.text andPort: [self.TLPort.text intValue]];

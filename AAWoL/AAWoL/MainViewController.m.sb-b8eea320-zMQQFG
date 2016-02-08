@@ -88,9 +88,8 @@
     cell.TLIp.text = item.ipAddress;
     cell.TLPort.text =  [[NSNumber alloc] initWithInteger: item.port].stringValue;
     cell.MainView = self;
+    return cell;  
     
-    [self addMovementGesturesToView:cell];
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -111,9 +110,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         @try{
             [self.db remove:[self.wolItems objectAtIndex:[indexPath row]]];
-            [self.wolItems removeObjectAtIndex:indexPath.row];
-            [tableView deleteRowsAtIndexPaths:@[indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+                [self.wolItems removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [self.view makeToast:@"Item Deleted!" duration:3.0 position:CSToastPositionBottom];
         }
         @catch(NSException *ex){
@@ -121,6 +119,8 @@
             NSLog(@"Error Deleting!");
             NSLog(@"%@", ex.reason);
         }
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
 
@@ -131,10 +131,14 @@
 }
 
 - (void)addMovementGesturesToView:(UIView *)view {
-    view.userInteractionEnabled = YES;
+    view.userInteractionEnabled = YES;  // Enable user interaction
+    
+    //    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    //    panGesture.delegate = self;
+    //    [view addGestureRecognizer:panGesture];
     
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
-    pinchGesture.delegate = (id)self;
+    pinchGesture.delegate = self;
     [view addGestureRecognizer:pinchGesture];
 }
 

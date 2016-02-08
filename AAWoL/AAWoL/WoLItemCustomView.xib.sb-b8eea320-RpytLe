@@ -38,6 +38,17 @@
                             <action selector="EditClicked:" destination="tbL-M6-BLt" eventType="touchUpInside" id="CK9-lD-dHW"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="48" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yg-xW-o3j">
+                        <rect key="frame" x="207" y="8" width="90" height="48"/>
+                        <color key="backgroundColor" red="0.17217462210000001" green="0.43477746210000001" blue="0.22533910300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <state key="normal" title="WAKE!">
+                            <color key="titleColor" red="0.8850141211" green="0.999704072" blue="0.82178661679999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="WakeClicked:" destination="tbL-M6-BLt" eventType="touchUpInside" id="bEe-CR-7Mj"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ma:cA:dd:re:ss:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-6g-85C">
                         <rect key="frame" x="8" y="4" width="140" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -50,17 +61,6 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="48" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yg-xW-o3j">
-                        <rect key="frame" x="207" y="8" width="90" height="48"/>
-                        <color key="backgroundColor" red="0.17217462210000001" green="0.43477746210000001" blue="0.22533910300000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                        <state key="normal" title="WAKE!">
-                            <color key="titleColor" red="0.8850141211" green="0.999704072" blue="0.82178661679999998" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="WakeClicked:" destination="tbL-M6-BLt" eventType="touchUpInside" id="bEe-CR-7Mj"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mbb-6g-85C" firstAttribute="top" secondItem="Vds-Xu-lys" secondAttribute="topMargin" constant="-4" id="1FH-MW-SpX"/>

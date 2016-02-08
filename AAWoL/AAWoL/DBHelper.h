@@ -15,7 +15,7 @@
 -(instancetype) init;
 
 -(NSMutableArray *) getAll;
--(void) add: (WoLItem *) wolItem;
--(void) remove: (WoLItem *) wolItem;
+-(BOOL) add: (WoLItem *) wolItem;
+-(BOOL) remove: (WoLItem *) wolItem;
 
 @end

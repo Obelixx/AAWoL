@@ -18,7 +18,11 @@
 
 @end
 
-@implementation AddViewController
+@implementation AddViewController{
+    CGFloat previousScale;
+    CGFloat scale;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,6 +139,7 @@
         [self performSegueWithIdentifier:@"ToMain" sender:toastText];
     }
 }
+
 
 @end
 

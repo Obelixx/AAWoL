@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "AAWoL-Swift.h"
 
-@interface AddViewController : UIViewController <UITextFieldDelegate>
+@interface AddViewController : UIViewController <UITextFieldDelegate,UIGestureRecognizerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITextField *TFMacAddress;
 @property (weak, nonatomic) IBOutlet UITextField *TFIpAddress;
 @property (weak, nonatomic) IBOutlet UITextField *TFPort;
+
 @property WoLItem *ItemData;
+
+@property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinch;
 
 - (IBAction)SaveClicked:(id)sender;
 

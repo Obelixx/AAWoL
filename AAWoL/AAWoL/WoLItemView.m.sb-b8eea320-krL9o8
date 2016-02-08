@@ -10,14 +10,9 @@
 #import "AAWoL-Swift.h"
 #import "Plugins/wol.h"
 #import "MainViewController.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 
-@implementation WoLItemView{
-    BOOL clicked;
-    UIButton *button;
-    SystemSoundID PlaySoundID;
-}
+@implementation WoLItemView
 
 
 
@@ -47,41 +42,51 @@
         }
     }
     
-    button = (UIButton*)sender;
+    UIButton *button = (UIButton*)sender;
     
-    int movementLenth = 5;
-    
-    clicked = !clicked;
-    
-    if(clicked){
-        [self move:-movementLenth];
-    }else{
-        [self move:movementLenth];
-    }
-    [self PlayAudio:self];
-    AudioServicesPlaySystemSound(PlaySoundID);
-}
-
--(void)move: (int) movementLenth{
-    CGRect newFrame = CGRectMake(button.frame.origin.x + movementLenth, button.frame.origin.y + movementLenth, button.frame.size.width, button.frame.size.height);
+    CGRect newFrame = CGRectMake(button.frame.origin.x + 25, button.frame.origin.y + 25, button.frame.size.width, button.frame.size.height);
     
     [UIView animateWithDuration:0.3f
-                          delay:0.3f
+                          delay:0.0f
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
                          [button setFrame:newFrame];
                      }
                      completion:nil];
     
+    if (!clicked){
+        
+        //animates button 25 pixels right and 25 pixels down. Customize
+        CGRect newFrame = CGRectMake(button.frame.origin.x + 25, button.frame.origin.y + 25, button.frame.size.width, button.frame.size.height);
+        
+        [UIView animateWithDuration:0.3f
+                              delay:0.0f
+                            options: UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             [button setFrame:newFrame];
+                         }
+                         completion:nil];
+        
+        clicked = YES;
+        
+    } else {
+        
+        
+        //animates button 25 pixels left and 25 pixels up. Customize
+        CGRect newFrame = CGRectMake(button.frame.origin.x - 25, button.frame.origin.y - 25, button.frame.size.width, button.frame.size.height);
+        
+        [UIView animateWithDuration:0.3f
+                              delay:0.0f
+                            options: UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             [button setFrame:newFrame];
+                         }
+                         completion:nil];
+        
+        clicked = NO;
+        
+    }
 }
-
--(IBAction)PlayAudio:(id)sender{
-    NSURL *SoundURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"LightsaberTurnOn" ofType:@"wav"]];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)SoundURL, &PlaySoundID);
-    
-    
-}
-
 
 - (IBAction)EditClicked:(id)sender {
     WoLItem *item = [[WoLItem alloc] initWithMacAddress:self.TLMac.text andIpAddress:self.TLIp.text andPort: [self.TLPort.text intValue]];

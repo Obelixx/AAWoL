@@ -11,7 +11,12 @@
 @interface MainViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (void)EditClicked:(id)sender;
+
+@property NSString* toastText;
+
+-(void)EditClicked:(id)sender;
+
+-(void) makeToast: (NSString *)withMessage;
 
 @end
 
