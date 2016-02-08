@@ -123,9 +123,8 @@
         
         
         NSString *toastText;;
-        if(self.ItemData != nil && !self.added){
+        if(self.ItemData != nil){
             [db remove:self.ItemData];
-            
             toastText = @"Item Edited!";
         }else{
             toastText = @"Item Added!";

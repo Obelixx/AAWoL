@@ -1,0 +1,158 @@
+//
+//  BackupViewController.m
+//  AAWoL
+//
+//  Created by AMD OS X on 08/02/2016.
+//  Copyright © 2016 AA. All rights reserved.
+//
+
+#import "BackupViewController.h"
+#import "WoLItemView.h"
+#import "AAWoL-Swift.h"
+#import "AddViewController.h"
+
+@interface BackupViewController()
+    
+@property NSMutableArray *wolItems;
+@property NSNumber *currentSelection;
+    
+@end
+
+
+@implementation BackupViewController
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.currentSelection = @-1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.wolItems.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *originalCell = [tableView dequeueReusableCellWithIdentifier:@"TabelViewCellIdentifier"];
+    
+    if(![originalCell isKindOfClass: [WoLItemView class]] || originalCell == nil) {
+        originalCell = [[[NSBundle mainBundle] loadNibNamed:@"WoLItemCustomView" owner:nil options:nil] objectAtIndex:0];
+    }
+    
+    WoLItemView *cell = (WoLItemView *) originalCell;
+    
+    WoLItem *item = [self.wolItems objectAtIndex:[indexPath row]];
+    
+    cell.TLMac.text = item.macAddress;
+    cell.TLIp.text = item.ipAddress;
+    cell.TLPort.text =  [[NSNumber alloc] initWithInteger: item.port].stringValue;
+    
+    [cell.BTNEdit setTitle:@"Add" forState:UIControlStateNormal];
+    cell.BackupView = self;
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    int rowHeight;
+    if ([indexPath row] == self.currentSelection.intValue) {
+        rowHeight = 65;
+    }
+    else
+        rowHeight = 65;
+    return rowHeight;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AddButton"]) {
+        
+        AddViewController *av = (AddViewController *)[segue destinationViewController];
+        av.added = YES;
+        av.ItemData = (WoLItem *)sender;
+    }
+}
+
+
+-(void)sendAt:(NSString *)urlStr
+   withMethod: (NSString*) method
+         body:(NSDictionary *)bodyDict
+      headers:(NSDictionary *)headersDict
+andCompletionHandler:(void (^)(NSDictionary *, NSError *))completionHandler {
+    NSURL *url = [NSURL URLWithString:urlStr];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setHTTPMethod:method];
+    
+    if(bodyDict){
+        NSData *body = [NSJSONSerialization dataWithJSONObject:bodyDict
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
+        [request setHTTPBody: body];
+    }
+    
+    if(headersDict){
+        for(id key in headersDict){
+            [request addValue:[headersDict objectForKey:key]
+           forHTTPHeaderField:key];
+        }
+    }
+    
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error){
+            completionHandler(nil, error);
+            return;
+        }
+        
+        NSError *err;
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+        
+        if(err) {
+            completionHandler(nil, err);
+            return;
+        }
+        completionHandler(dict, nil);
+    }]
+     resume];
+}
+
+-(void)getFrom:(NSString *)urlStr headers:(NSDictionary *)headersDict withCompletionHandler:(void (^)(NSDictionary *, NSError *))completionHandler {
+    [self sendAt:urlStr withMethod:@"GET"
+            body:nil headers:headersDict andCompletionHandler:completionHandler];
+}
+
+- (IBAction)GetClicked:(id)sender {
+    
+    [self getFrom:@"http://localhost:9001/api/wolitems" headers:nil
+ withCompletionHandler:^(NSDictionary * dict, NSError *err) {
+     if(err){
+         NSLog(@"Error!");
+         return;
+     }
+     NSMutableArray *items = [NSMutableArray array];
+     
+     for (NSDictionary *itemsDict in [dict objectForKey:@"result"]){
+         
+         NSInteger port = [(NSString *)[itemsDict objectForKey:@"port"] integerValue];
+         
+         WoLItem *item = [[WoLItem alloc] initWithMacAddress:[itemsDict objectForKey:@"mac"] andIpAddress:[itemsDict objectForKey:@"ip"] andPort:port];
+             [items addObject:item];
+     }
+     self.wolItems = items;
+     
+     dispatch_async(dispatch_get_main_queue(), ^{
+         [self.tableView reloadData];
+     });
+ }];
+}
+
+- (void)EditClicked:(WoLItem*)item {
+    [self performSegueWithIdentifier:@"AddButton" sender:item];
+}
+
+
+@end

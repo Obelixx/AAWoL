@@ -19,7 +19,7 @@
 @property WoLItem *ItemData;
 
 @property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinch;
-@property BOOL added;
+@property BOOL edited;
 
 - (IBAction)SaveClicked:(id)sender;
 

@@ -221,7 +221,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="KM0-2C-2sB" id="TgM-so-oac"/>
-                        <segue destination="s6M-pS-5BA" kind="show" identifier="AddButton" id="BVi-5s-pQt"/>
+                        <segue destination="s6M-pS-5BA" kind="show" id="BVi-5s-pQt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWP-gJ-IpF" userLabel="First Responder" sceneMemberID="firstResponder"/>

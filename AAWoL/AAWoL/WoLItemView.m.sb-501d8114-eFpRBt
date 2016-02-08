@@ -89,7 +89,7 @@
         [self.MainView EditClicked:item];
     }
     if(self.BackupView!=nil){
-        [self.BackupView EditClicked:item];
+        [self.MainView AddClicked:item];
     }
 }
 

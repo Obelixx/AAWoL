@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
-#import "BackupViewController.h"
+
 @interface WoLItemView : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *TLMac;
@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *TLPort;
 
 @property MainViewController *MainView;
-@property BackupViewController *BackupView;
 
 @property (weak, nonatomic) IBOutlet UIButton *BTNEdit;
 
