@@ -14,5 +14,6 @@
 - (IBAction)GetClicked:(id)sender;
 -(void)EditClicked:(id)sender;
 
+- (IBAction)PostAllClicked:(id)sender;
 
 @end

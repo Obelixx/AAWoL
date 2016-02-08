@@ -15,6 +15,7 @@
     
 @property NSMutableArray *wolItems;
 @property NSNumber *currentSelection;
+@property NSString *apiUrl;
     
 @end
 
@@ -24,7 +25,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    
+    self.apiUrl = @"http://localhost:9001/api/wolitems";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.currentSelection = @-1;
@@ -125,9 +126,14 @@ andCompletionHandler:(void (^)(NSDictionary *, NSError *))completionHandler {
             body:nil headers:headersDict andCompletionHandler:completionHandler];
 }
 
+-(void)postAt:(NSString *)urlStr withBody:(NSDictionary *)bodyDict headers:(NSDictionary *)headersDict andCompletionHandler:(void (^)(NSDictionary *, NSError *))completionHandler {
+    [self sendAt:urlStr withMethod:@"POST"
+            body:bodyDict headers:headersDict andCompletionHandler:completionHandler];
+}
+
 - (IBAction)GetClicked:(id)sender {
     
-    [self getFrom:@"http://localhost:9001/api/wolitems" headers:nil
+    [self getFrom:self.apiUrl headers:nil
  withCompletionHandler:^(NSDictionary * dict, NSError *err) {
      if(err){
          NSLog(@"Error!");
@@ -153,6 +159,5 @@ andCompletionHandler:(void (^)(NSDictionary *, NSError *))completionHandler {
 - (void)EditClicked:(WoLItem*)item {
     [self performSegueWithIdentifier:@"AddButton" sender:item];
 }
-
 
 @end

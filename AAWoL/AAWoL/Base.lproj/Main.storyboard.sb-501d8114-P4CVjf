@@ -203,11 +203,7 @@
                                                     <action selector="GetClicked:" destination="USE-li-bet" id="cFb-lp-Fmx"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="PostAll" id="N66-Cc-Rgq">
-                                                <connections>
-                                                    <action selector="PostAllClicked:" destination="USE-li-bet" id="arQ-ZF-1zv"/>
-                                                </connections>
-                                            </barButtonItem>
+                                            <barButtonItem title="PostAll" id="N66-Cc-Rgq"/>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
